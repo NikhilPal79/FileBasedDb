@@ -14,8 +14,8 @@ public class StudentService {
     @Autowired
     StudentRepo studentRepo;
 
-    /*public List<Student> findAll() {
+    public List<Student> findAll() {
         List<Student> studentList = studentRepo.findAll();
         return studentList;
-    }*/
+    }
 }

@@ -14,6 +14,8 @@ public class StudentDataLoader implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
+        /*new Student.StudentBuilder().id(5455).firstName().build()*/
+
        /* Student student = new Student();
         student.setId(1598);
         student.setFirstName("ankita");

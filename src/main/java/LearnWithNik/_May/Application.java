@@ -16,13 +16,12 @@ public class Application {
 
 	public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
-        /*StudentService studentService = context.getBean(StudentService.class);
-        System.out.println(studentService.findAll());*/
+        StudentService studentService = context.getBean(StudentService.class);
+        System.out.println(studentService.findAll());
 
         EmpService empService = context.getBean(EmpService.class);
         List<Emp> allEmp = empService.findAllEmp();
         System.out.println(allEmp);
-
 
     };
 
