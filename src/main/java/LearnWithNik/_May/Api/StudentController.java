@@ -51,5 +51,10 @@ public class StudentController {
         return updatedStudent;
     }
 
+    @GetMapping("/allByName")
+    public List<Student> getAllByFirstName(@RequestParam() String Name){
+        return studentService.getAllByFirstName(Name);
+    }
+
 
 }

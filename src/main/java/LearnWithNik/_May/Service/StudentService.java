@@ -42,4 +42,9 @@ public class StudentService {
         }
         return student;
     }
+
+    public List<Student> getAllByFirstName(String firstName){
+        List<Student> allStudentByFirstName = studentRepo.findAllStudentByFirstName(firstName);
+        return allStudentByFirstName;
+    }
 }
