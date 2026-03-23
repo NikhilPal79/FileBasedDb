@@ -10,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import java.util.List;
+import java.util.Optional;
 
 @SpringBootApplication
 public class Application {
@@ -22,6 +23,9 @@ public class Application {
         EmpService empService = context.getBean(EmpService.class);
         List<Emp> allEmp = empService.findAllEmp();
         System.out.println(allEmp);
+
+        StudentService studentService1 = context.getBean(StudentService.class);
+        System.out.println(studentService1);
 
     };
 
