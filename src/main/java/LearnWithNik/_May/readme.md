@@ -48,6 +48,8 @@
 # JPQL
 # SQL: NATIVE QUERY 
 
+# RESPONSE ENTITY [use of response entity ? why ? how ?]
+
 
 Insert into STUDENT_TABLE values(5072,'nikhil','pal','123456789','nik@gmail.com');
 Insert into STUDENT_TABLE values(2122,'karan','tejpal','412356789','karan@gmail.com');

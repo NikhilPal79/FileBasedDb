@@ -58,7 +58,7 @@ public class StudentController {
     }
 
     @PostMapping("/lastnames")
-    public List<Student> getAllByLastName(@RequestBody StudentDTO studentDTO){
+    public List<String> getAllByLastName(@RequestBody StudentDTO studentDTO){
         return studentService.getLastName(studentDTO.getFirstName());
     }
 

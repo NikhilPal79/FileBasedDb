@@ -13,7 +13,7 @@ public interface StudentRepo extends JpaRepository<Student, Integer> {
     List<Student> findAllStudentByFirstName(String firstName);
 
     @Query("SELECT s.lastName FROM Student s where s.firstName = :firstName ")
-    List<Student> findAllLastNameByFirstName(String firstName);
+    List<String> findAllLastNameByFirstName(String firstName);
 
 
 
