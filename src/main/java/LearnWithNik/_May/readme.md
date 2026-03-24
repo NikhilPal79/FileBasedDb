@@ -42,6 +42,12 @@
 # DIFFERENT BETWEEN PUT AND PATCH 
 
 
+# HOW TO WRITE CUSTOM QUERY ?
+
+# HQL
+# JPQL
+# SQL: NATIVE QUERY 
+
 
 Insert into STUDENT_TABLE values(5072,'nikhil','pal','123456789','nik@gmail.com');
 Insert into STUDENT_TABLE values(2122,'karan','tejpal','412356789','karan@gmail.com');

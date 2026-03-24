@@ -1,5 +1,6 @@
 package LearnWithNik._May.Api;
 
+import LearnWithNik._May.Dto.StudentDTO;
 import LearnWithNik._May.Entity.Student;
 import LearnWithNik._May.Service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +55,11 @@ public class StudentController {
     @GetMapping("/allByName")
     public List<Student> getAllByFirstName(@RequestParam() String Name){
         return studentService.getAllByFirstName(Name);
+    }
+
+    @PostMapping("/lastnames")
+    public List<Student> getAllByLastName(@RequestBody StudentDTO studentDTO){
+        return studentService.getLastName(studentDTO.getFirstName());
     }
 
 
