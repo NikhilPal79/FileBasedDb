@@ -1,7 +1,12 @@
 package LearnWithNik._May.Service;
 
+import LearnWithNik._May.Entity.Course;
+import LearnWithNik._May.Entity.Phone;
 import LearnWithNik._May.Entity.Student;
+import LearnWithNik._May.Repo.CourseRepo;
+import LearnWithNik._May.Repo.PhoneRepo;
 import LearnWithNik._May.Repo.StudentRepo;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -14,6 +19,12 @@ public class StudentService {
 
     @Autowired
     StudentRepo studentRepo;
+
+    @Autowired
+    PhoneRepo phoneRepo;
+
+    @Autowired
+    CourseRepo courseRepo;
 
     public List<Student> findAll() {
         List<Student> studentList = studentRepo.findAll();
@@ -29,7 +40,12 @@ public class StudentService {
 
     ///  to create new student
 
+    @Transactional
     public Student createStudent(Student student){
+        courseRepo.saveAll(student.getCourse());
+
+        Phone savedPhone = phoneRepo.save(student.getPhone());
+        student.setPhone(savedPhone);
         Student savedStudent = studentRepo.save(student);
         return savedStudent;
     }

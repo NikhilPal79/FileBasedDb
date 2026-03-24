@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.engine.internal.Cascade;
+
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -25,6 +28,14 @@ public class Student {
     private String phoneNumber;
     @Column(length = 100)
     private String email;
+
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "phone_id",referencedColumnName = "id")
+    private Phone phone;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Course> course;
 
     @Override
     public String toString() {

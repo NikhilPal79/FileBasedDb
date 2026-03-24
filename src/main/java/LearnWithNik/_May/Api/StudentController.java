@@ -2,6 +2,7 @@ package LearnWithNik._May.Api;
 
 import LearnWithNik._May.Dto.StudentDTO;
 import LearnWithNik._May.Entity.Student;
+import LearnWithNik._May.Repo.PhoneRepo;
 import LearnWithNik._May.Service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -20,6 +21,7 @@ public class StudentController {
 
     @Autowired
     StudentService studentService;
+
 
     /*@RequestMapping(method = RequestMethod.GET, path = "/getAll")*/
     @GetMapping( value = "/getAll", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -41,7 +43,7 @@ public class StudentController {
     }
 
     @PostMapping("/create")
-    public Student createStudent(@RequestBody@Validated Student student){
+    public Student createStudent(@RequestBody Student student){
         Student studentServiceStudent = studentService.createStudent(student);
         return studentServiceStudent;
 
