@@ -6,6 +6,7 @@ import LearnWithNik._May.Entity.Student;
 import LearnWithNik._May.Repo.CourseRepo;
 import LearnWithNik._May.Repo.PhoneRepo;
 import LearnWithNik._May.Repo.StudentRepo;
+import LearnWithNik._May.Repo.TeacherRepo;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -26,6 +27,9 @@ public class StudentService {
     @Autowired
     CourseRepo courseRepo;
 
+    @Autowired
+    TeacherRepo teacherRepo;
+
     public List<Student> findAll() {
         List<Student> studentList = studentRepo.findAll();
         return studentList;
@@ -42,6 +46,8 @@ public class StudentService {
 
     @Transactional
     public Student createStudent(Student student){
+        teacherRepo.saveAll(student.getTeacher());
+
         courseRepo.saveAll(student.getCourse());
 
         Phone savedPhone = phoneRepo.save(student.getPhone());

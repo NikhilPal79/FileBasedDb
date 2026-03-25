@@ -37,6 +37,9 @@ public class Student {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Course> course;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<Teacher> teacher;
+
     @Override
     public String toString() {
         return "Student{" +

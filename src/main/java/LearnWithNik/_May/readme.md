@@ -51,6 +51,28 @@
 # RESPONSE ENTITY [use of response entity ? why ? how ?]
 
 
+# RELATIONSHIP 
+1. ONE TO ONE 
+2. ONE TO MANY [Return List ]
+3. MANY TO MANY [Return List]
+
+# USE OF CASCADE [AND THEIR METHODS ]
+
+# USE OF JOIN 
+
+# IF WE NEED TO CONSUME REST API, WE NEED TO MAKE DTOs [we need http client]
+
+# REST TEMPLATE 
+
+
+# REST
+
+# SOAP 
+
+
+
+
+
 Insert into STUDENT_TABLE values(5072,'nikhil','pal','123456789','nik@gmail.com');
 Insert into STUDENT_TABLE values(2122,'karan','tejpal','412356789','karan@gmail.com');
 Insert into STUDENT_TABLE values(5655,'ramneek','pannu','123124789','ram@gmail.com');
