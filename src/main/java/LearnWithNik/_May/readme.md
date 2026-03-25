@@ -62,13 +62,15 @@
 
 # IF WE NEED TO CONSUME REST API, WE NEED TO MAKE DTOs [we need http client]
 
-# REST TEMPLATE 
+# REST TEMPLATE [when we bean of http ]
 
 
 # REST
 
-# SOAP 
+# SOAP
 
+# WEB CLIENT [WHEN WE NEED BEAN  OF WEB CLIENT WE NEED ? ]
+follow builder pattern
 
 
 

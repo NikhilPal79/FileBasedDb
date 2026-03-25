@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
 
 import java.util.Objects;
 import java.util.Optional;
@@ -19,7 +21,10 @@ public class GitHubService {
     private GitUserRepo githubUserRepo;
 
     @Autowired
-    RestTemplate restTemplate;
+    private RestTemplate restTemplate;
+
+    @Autowired
+    private WebClient webClient;
 
     ///  Rest Template
     /*public GitHubUser fetchAndPersist (String login){
@@ -43,8 +48,8 @@ Map JSON responses to your Java objects automatically
 
 Handle responses as ResponseEntity for full HTTP metadata*/
 
-
-    public GitHubUser fetchAndPersist(String login){
+/*
+    public GitHubUser fetchAndPersist(String login) {
 
         /// check in database first
         Optional<GitHubUser> byLogin = githubUserRepo.findByLogin(login);
@@ -64,17 +69,18 @@ Handle responses as ResponseEntity for full HTTP metadata*/
 
             /// validate response
 
-            if (user != null && user.getId() != null ) {
+            if (user != null && user.getId() != null) {
 
                 githubUserRepo.save(user);
                 return user;
-            }else  {
+            } else {
                 throw new RuntimeException("User not found");
             }
 
-        }catch (RuntimeException e) {
+        } catch (RuntimeException e) {
             throw new HttpClientErrorException(HttpStatus.NOT_FOUND);
         }
+    }*/
 
         /*
         * . Complete flow
@@ -93,6 +99,33 @@ Subsequent requests for the same user:
 DB check → found
 
 Return user directly → no API call*/
+
+
+
+
+
+    /// web client
+    private ResponseEntity<GitHubUser> consumeWithWebClient(String login){
+        Mono<ResponseEntity<GitHubUser>> gitHubUserMonoResponseEntityMono = webClient
+                .get()
+                .uri("https://api.github.com/users/" + login)
+                .header("authId", "asd234")
+                .retrieve()
+                .toEntity(GitHubUser.class);
+
+        ResponseEntity<GitHubUser> gitHubUserResponseEntity = gitHubUserMonoResponseEntityMono.block();
+        return gitHubUserResponseEntity;
+    }
+
+    public GitHubUser fetchAndPersist(String login){
+
+        ResponseEntity<GitHubUser> gitHubUserResponseEntity = consumeWithWebClient(login);
+        if (Objects.nonNull(gitHubUserResponseEntity.getBody()) &&
+        Objects.nonNull(gitHubUserResponseEntity.getBody().getId())) {
+            githubUserRepo.save(gitHubUserResponseEntity.getBody());
+            return gitHubUserResponseEntity.getBody();
+        }
+        return new GitHubUser();
 
 
     }
