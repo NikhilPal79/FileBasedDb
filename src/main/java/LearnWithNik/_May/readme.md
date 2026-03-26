@@ -32,6 +32,8 @@
 
 # produces = produces = MediaType.APPLICATION_JSON_VALUE [where we use this ?]
 
+# TRANSACTIONAL [USE OF IT ?]
+
 # RESPONSE ENTITY 
 
 # 3 WAYS THEY CAN SEND THE RESPONSE BODY 

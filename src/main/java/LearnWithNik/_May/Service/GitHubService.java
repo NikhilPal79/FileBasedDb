@@ -1,18 +1,15 @@
 package LearnWithNik._May.Service;
 
 import LearnWithNik._May.Entity.GitHubUser;
+import LearnWithNik._May.FeighClients.StudentClient;
 import LearnWithNik._May.Repo.GitUserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Mono;
 
 import java.util.Objects;
-import java.util.Optional;
 
 @Service
 public class GitHubService {
@@ -25,6 +22,10 @@ public class GitHubService {
 
     @Autowired
     private WebClient webClient;
+
+
+    @Autowired
+    private StudentClient studentClient;
 
     ///  Rest Template
     /*public GitHubUser fetchAndPersist (String login){
@@ -105,7 +106,7 @@ Return user directly → no API call*/
 
 
     /// web client
-    private ResponseEntity<GitHubUser> consumeWithWebClient(String login){
+    /*private ResponseEntity<GitHubUser> consumeWithWebClient(String login){
         Mono<ResponseEntity<GitHubUser>> gitHubUserMonoResponseEntityMono = webClient
                 .get()
                 .uri("https://api.github.com/users/" + login)
@@ -126,6 +127,24 @@ Return user directly → no API call*/
             return gitHubUserResponseEntity.getBody();
         }
         return new GitHubUser();
+    }*/
+
+
+    /// feigh client
+
+    public GitHubUser fetchAndPersist(String login) {
+
+        ResponseEntity<GitHubUser> studentClientGitUser = studentClient.getGitUser(login);
+
+        if (Objects.nonNull(studentClientGitUser.getBody()) &&
+        Objects.nonNull(studentClientGitUser.getBody().getId())) {
+            githubUserRepo.save(studentClientGitUser.getBody());
+            return studentClientGitUser.getBody();
+
+        }
+        return new GitHubUser();
+
+
 
 
     }
